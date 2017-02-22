@@ -21,4 +21,39 @@ npm install --save-dev webpack
 //全局安装
 //      指定入口文件  最终使用文件
 webpack entry.js bundle.js
+
+//监控文件:自动更新，自动打包
+webpack entry.js bundle.js --moduleb-bin 'css=style-loader!css-loader' --watch
+
+//打包过程参数
+--progress
+
+//打包模块
+-- display-modules
+
+//打包原因
+--display-reasons
+
+```
+
+**配置文件配置webpack**
+- 建立webpack.config.js:默认的配置文件名，运行webpack会自动查找运行这个文件
+- 配置文件配置
+```
+//commonjs规范
+module.exports = {
+  entry:'./src/script/main.js',//入口文件
+  output:{
+      path:'./dist/js/',//输出文件路径
+      filename:'bundle.js'//输出文件名
+  }
+}
+```
+- 在运行webpack后添加参数在package.json里配置
+```
+"webpack":"webpack --config webpack.config.js --progress --display-modulesm --colors --display-reasons"
+```
+- 运行命令
+```
+npm run webpack
 ```

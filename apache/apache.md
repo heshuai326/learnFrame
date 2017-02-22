@@ -1,0 +1,30 @@
+###ubuntu apache的配置
+**apache服务器映射的根目录**
+- 安装apache2
+```
+sudo apt-get install apache2
+```
+- 进入/etc/apache2/文件夹下
+apache2.conf是主要的配置文件,其他的配置文件都会被加载到这个文件
+![apache](/Users/lanou/Desktop/apache.png)
+- 进入/etc/apache2/sites-available/文件夹下
+将000-default.conf的服务器根目录映射也修改成自己的设置的文件夹
+
+**服务器不能解析php文件**
+- 安装所需要的模块
+```
+sudo apt-get install php
+sudo apt-get install libapache2-mod-php 
+sudo apt-get libapache2-mod-auth-mysql
+```
+- /etc/mysql/mysql.conf.d是mysql的配置文件
+- 在apache2.conf文件中添加
+```
+AddHandler php5-script .php .html
+AddType text/html .php .html
+LoadModule php5_module 
+```
+- 重启服务器
+```
+sudo /etc/init.d/apache2 restart
+```
