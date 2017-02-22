@@ -6,7 +6,7 @@ sudo apt-get install apache2
 ```
 - 进入/etc/apache2/文件夹下
 apache2.conf是主要的配置文件,其他的配置文件都会被加载到这个文件
-![apache](/Users/lanou/Desktop/apache.png)
+![输入图片说明](http://git.oschina.net/uploads/images/2017/0222/195952_4ee5493f_815294.png "在这里输入图片标题")
 - 进入/etc/apache2/sites-available/文件夹下
 将000-default.conf的服务器根目录映射也修改成自己的设置的文件夹
 
