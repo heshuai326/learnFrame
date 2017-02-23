@@ -28,3 +28,22 @@ LoadModule php5_module
 ```
 sudo /etc/init.d/apache2 restart
 ```
+
+**远程登录mysql数据库**
+- 给用户赋予权限
+```
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
+```
+- 重载授权表
+```
+FLUSH PRIVILEGES;
+```
+- 进入/etc/mysql/mysql.conf.d/ 修改mysqld.conf
+```
+//绑定的本地注释掉
+#bind-address           = 127.0.0.1
+```
+- 重启mysql服务
+```
+sudo service mysql restart
+```

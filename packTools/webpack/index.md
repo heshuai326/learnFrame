@@ -57,3 +57,21 @@ module.exports = {
 ```
 npm run webpack
 ```
+**使用webpack构建本地服务器**
+
+让浏览器检测修改的代码，并自动刷新修改后的结果，起始webpack提供一个可选的本地开发服务器，这个本地服务器基于node构建
+- 安装依赖
+```
+npm install --save-dev webpack-dev-server
+```
+- 在webpack配置文件里面配置
+```
+ //浏览器检测代码的修改，并自动刷新修改后的结果 
+  devServer:{
+    contentBase:'index.html',//本地服务器所加载的页面所在的mul
+    colors:true,//终端输出结果为彩色
+    hostoryApiFallback:true,//不跳转
+    inline:true//实时刷新
+  }
+```
+

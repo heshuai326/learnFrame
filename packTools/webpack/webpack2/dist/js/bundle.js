@@ -71,16 +71,18 @@
 /***/ (function(module, exports) {
 
 function a(){
-    
+    console.log("这是a函数");   
 }
+a();
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
 function hello(){
-
+    console.log("这是hello函数");
 }
+hello();
 
 /***/ }),
 /* 2 */
