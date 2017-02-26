@@ -1,4 +1,4 @@
-var htmlWebpackPlugin = require("htmlwebpackplugin");
+var htmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   // entry:'./src/script/main.js',//入口文件
   entry:['./src/script/main.js','./src/script/a.js'],
@@ -14,6 +14,9 @@ module.exports = {
     inline:true//实时刷新
   },
   plugins:[
-    new htmlWebpackPlugin()
+    // 插件的初始化
+    new htmlWebpackPlugin({
+      tuitle:'Webpack App'
+    })
   ]
 }

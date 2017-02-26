@@ -75,3 +75,47 @@ npm install --save-dev webpack-dev-server
   }
 ```
 
+**使用plugins**
+
+*自动生成html文件*
+- 安装html-webpack-plugin
+``
+npm install html-webpack-plugin
+``
+- 在webpack配置文件中引用
+``
+var htmlWebpackPlugin = require('html-webpack-plugin');
+``
+
+- 在配置中添加plgins配置
+
+可以配置多个,plgins是一个数组
+- 实例化plugins
+
+``
+ new htmlWebpackPlugin({
+            // 传入参数，一个对象
+            template:'index.html',//模板文件
+            filename:'index-[name].html',//文件名
+            inject:'head',//文件位置
+            title:'webpack is good',
+            date :new Date(),
+            // 压缩
+            minify:{
+                removeComments:true
+            }
+``
+- 在模板html中可以使用ejs语法
+
+遍历 htmlWebpackPlugin
+
+``
+<% for (var key in htmlWebpackPlugin.files){%>
+        <%=key %>:<%=JSON.stringify(htmlWebpackPlugin.files[key]) %>
+    <%}%>
+``
+
+**使用plugins的异常处理**
+
+*设置node的环境变量*
+ 在~/.bash_profile中添加如下设置： export NODE_PATH="/usr/local/lib/node_modules" 保存退出。
