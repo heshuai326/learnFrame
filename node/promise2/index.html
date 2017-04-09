@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+<body>
+   <p>
+       promise是一个对象，里面保存着某个未来才会结束的时间
+       <ul>
+           <li>对象的状态不受外界影响
+               <ol>
+                   <li>pending:进行中</li>
+                   <li>resolved:已完成</li>
+                   <li>rejected:已失败</li>
+               </ol>
+           </li>
+           <li>状态一旦改变，就不会再变</li>
+       </ul>
+   </p>
+   <code>
+       var promise  = new Promise(function(resolve,reject){
+           //进行异步操作
+           if(成功){
+               resolve(value);//调用resolve，将一部操作返回的value，作为参数传递出去
+           }else{
+               reject(err);//调用reject，将异步操作返回的error，作为参数传递出去
+           }
+       });
+       promise.then(function(value){
+       //接收resove传递的参数，进行处理
+       }，function(error){
+           //接收reject传递的参数，进行处理，第二个参数为可选
+       })
+   </code>
+</body>
+<script src="index.js"></script>
+</html>
+
