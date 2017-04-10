@@ -25,10 +25,26 @@ var getJSON = function(url) {
 };
 
 
-const makeRequest = ()=>getJSON('/index.json')
-.then(data=>{
-    console.log(data)
-    return 'done'
-})
+// const makeRequest = ()=>getJSON('/index.json')
+// .then(data=>{
+//     console.log(data)
+//     return 'done'
+// })
 
-makeRequest();
+// makeRequest().then(function(){
+// console.log("json请求结束");
+// })
+
+const promises = ["index","main"].map(function(value){
+  return getJSON('/'+value+".json").then(function(data){
+    console.log(data);
+  })
+});
+
+Promise.all(promises).then(function(posts){
+   //promises全部resolved的情况，走这里
+    console.log('promises全部成功执行');
+}).catch(function(error){
+  // promises中rejected的情况，走这里
+  console.log(error);
+})
