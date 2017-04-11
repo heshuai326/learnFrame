@@ -11,7 +11,12 @@ var mongo = require('mongodb').MongoClient;
 // }).catch(function(err){
 //   console.log(err);
 // })
-
+/**
+ * async/await是写异步代码的新方式，以前的方法有回调函数和promise
+ * 基于promise实现，不能用普通的回调函数
+ * 非阻塞
+ * 异步代码看起来像同步代码
+ */
 const myMongo = async()=>{
     //等待的是一个promise对象
     const db = await new Promise(function(resolve,reject){
