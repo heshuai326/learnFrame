@@ -41,6 +41,7 @@ class ScrollTest  extends Component{
                onMomentumScrollBegin={()=>{this._onMomentumScrollBegin()}}
                onMomentumScrollEnd={()=>{this._onMomentumScrollEnd()}}
                 refreshControl = {
+                    //刷新控制小组件
                     <RefreshControl
                     refreshing={false}
                     titleColor="red"

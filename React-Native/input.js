@@ -10,7 +10,6 @@ import {
   TextInput
 } from 'react-native';
 
-// 实现一个Button
 class Input extends Component{
     constructor(props) {
     super(props);
@@ -20,7 +19,7 @@ class Input extends Component{
     render(){
         return(
             <View>
-             <TextInput style={styles.input} placeholder="请输入"  onChangeText={(text) => this.setState({text}) }>
+             <TextInput style={styles.input} placeholder="请输入"  onChangeText={(text) => this.setState({text}) }>  //函数的调用 onPress={()=>{ fn() }}
                  <Text style={styles.text}>{this.state.text}</Text>
              </TextInput>
            </View> 

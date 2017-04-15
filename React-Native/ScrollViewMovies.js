@@ -11,7 +11,7 @@ import {
 const dataSource = require('../data/data.json');
 console.log(dataSource);
 
-// 实现一个Button
+
 class MiveList  extends Component{
     constructor(props) {
     super(props);

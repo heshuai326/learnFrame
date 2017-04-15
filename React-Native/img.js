@@ -11,7 +11,11 @@ import {
   Image
 } from 'react-native';
 
-// 实现一个Button
+
+/**
+ * 本地用一个require('./index.png')
+ * 网络图片用 source={{uri:''}}
+ */
 class Img extends Component{
     constructor(props) {
     super(props);
@@ -21,8 +25,7 @@ class Img extends Component{
     render(){
         return(
             <View style={styles.con}>
-                <View style={styles.com}><Image style={styles.netImg} source={{uri:'https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20170410_wap_cpm_9549.jpg'}}></Image></View>
-                
+                <View style={styles.com}><Image style={styles.netImg} source={{uri:'https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20170410_wap_cpm_9549.jpg'}}></Image></View>               
                 <View style={styles.com}><Image  style={styles.localImg}  source={require('../image/1.jpg')}></Image></View>        
             </View>    
         )

@@ -9,7 +9,6 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 
-// 实现一个Button
 class TouchAble extends Component{
     constructor(props) {
     super(props);

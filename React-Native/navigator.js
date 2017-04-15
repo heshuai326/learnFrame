@@ -67,9 +67,9 @@ var NavigatorTest=React.createClass({
             <Navigator
                 //第一步需要进行初始路由的设置
                 initialRoute={rootRoute}
-                //二 页面切换方式
+                //第二步 页面切换方式
                 configureScene={(route)=>Navigator.SceneConfigs.PushFromRight}
-                //确定要渲染的场景
+                //第三步 确定要渲染的场景
                 renderScene={(route,navigator)=>{
                     //需要找到要渲染的页面
                     var Component=route.component;
