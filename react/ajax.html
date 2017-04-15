@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react</title>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script src="./bower_components/react/react.min.js"></script>
+<script src="./bower_components/react/react-dom.min.js"></script>
+<script src="./bower_components/babel-standalone/babel.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/babel">
+    var RequestTest = React.createClass({
+        getInitialState:function () {
+//           设置原始数据的初值
+          return {text:"heshuai"}
+       },
+        componentDidMount:function () {
+//       这时发起请求,改变原始数据状态
+//            let that = this;
+            $.ajax({
+                method:"get",
+                url:'http://localhost:3000/index',
+                success:function (res) {
+                    console.log(this);
+                    this.setState({
+                        text:res
+                    })
+                }.bind(this)
+
+            })
+
+        },
+        render:function () {
+            return <h1>{this.state.text}</h1>
+        }
+    });
+    ReactDOM.render(
+            <RequestTest></RequestTest>,
+            document.getElementById("container")
+    )
+</script>
+</html>

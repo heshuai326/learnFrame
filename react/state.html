@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react</title>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script src="./bower_components/react/react.min.js"></script>
+<script src="./bower_components/react/react-dom.min.js"></script>
+<script src="./bower_components/babel-standalone/babel.min.js"></script>
+<script type="text/babel">
+    /*
+    * state:状态,当一些事件触发的时候,总有些数据会发生改变,这些数据就使用组件的属性state进行保存
+    * 在react绑定时间用on绑定,on为小写后面的首字母大写,事件处理方法作为组件的方法存在
+    * */
+//    简单地事件绑定
+
+   /* var MyButton = React.createClass({
+        handleClick : function(){
+            console.log("点到了");
+    },
+        render:function () {
+            return <button onClick={this.handleClick}>点我</button>
+        }
+    });
+    ReactDOM.render(
+            <MyButton></MyButton>,
+            document.getElementById("container")
+    )*/
+
+   /*
+   var CheckButton = React.createClass({
+//       状态的初始化方法使用的getInitailState
+       getInitialState:function () {
+           return {
+//               状态的初始值
+               isChecked:false
+           }
+       },
+       handleCheck:function () {
+//           checkbox选中改变的操作,状态的重新赋值setState
+//           里面是一个对象
+         this.setState({
+             isChecked:!this.state.isChecked
+         })
+       },
+       render:function () {
+//           在JSX中最好不要使用if语句
+           var text = this.state.isChecked?"已选中":"未选中";
+           return (
+                   <div>
+                       <input type="checkbox" onClick={this.handleCheck}/>
+                       <span>{text}</span>
+                   </div>
+           )
+       }
+   })
+
+    ReactDOM.render(
+            <CheckButton></CheckButton>,
+            document.getElementById("container")
+    )
+    */
+
+   var Input = React.createClass({
+       getInitialState:function () {
+           return {
+               val:"hehsuai"
+           }
+       },
+       change:function (e) {
+           let value =  e.target.value
+         this.setState({
+            val:value
+       })
+       },
+       render:function () {
+           let val = this.state.val;
+           return (
+                   <div>
+                       <input type="text" value={val} onChange={this.change}/>
+                       <h1>{val}</h1>
+                   </div>
+           )
+       }
+   })
+
+    ReactDOM.render(
+            <Input/>,
+            document.getElementById("container")
+    )
+</script>
+</html>

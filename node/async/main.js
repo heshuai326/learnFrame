@@ -30,3 +30,4 @@ const myMongo = async()=>{
 myMongo().catch(err=>{
     console.log(err);
 });
+

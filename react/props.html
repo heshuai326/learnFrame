@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react</title>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script src="./bower_components/react/react.min.js"></script>
+<script src="./bower_components/react/react-dom.min.js"></script>
+<script src="./bower_components/babel-standalone/babel.min.js"></script>
+<script type="text/babel">
+    //子组件会继承父组件的所有属性(使用...this.props)
+//    var Test = React.createClass({
+//        render:function () {
+//            return <a {...this.props}>百度</a>
+//        }
+//    })
+//    ReactDOM.render(
+//                <Test href="https://www.baidu.com/" alt="百度" name="baidu"></Test>,
+//                document.getElementById("container")
+//    )
+    /*this.props与父组件的属性一一对应,除了this.props.children,代表组件中所有的标签
+    * this.props.children指的是,渲染时为组件添加的子级
+    * 使用React.Children.map
+    * */
+
+    /**遍历该组件中的标签,显示到列表,遍历的方法使用React.Children.map**/
+    var ChildTest = React.createClass({
+        render:function () {
+            return (<ul>
+                {
+                    React.Children.map(this.props.children, function (child, key) {
+                        return <li key={key}>{child}</li>
+                    })
+                }
+                  </ul>)
+        }
+
+    })
+
+    ReactDOM.render(
+            (
+          <ChildTest>
+              <h1>标题</h1>
+              <p>段落</p>
+              <a href="#">百度</a>
+          </ChildTest>
+        ),
+            document.getElementById("container")
+    )
+</script>
+</html>

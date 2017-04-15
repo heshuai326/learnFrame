@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react</title>
+    <style>
+        .act{
+            color: pink;
+            background-color: #5bc0de;
+        }
+    </style>
+</head>
+<body>
+ <div id="container"></div>
+</body>
+<script src="./bower_components/react/react.min.js"></script>
+<script src="./bower_components/react/react-dom.min.js"></script>
+<script src="./bower_components/babel-standalone/babel.min.js"></script>
+<script type="text/babel">
+/*
+* 在react中将一些重用的DOM结构进行封装,就称为组件(component)
+* 一个组件就是一个组件类:
+* 命名规则:1.首字母大写2.驼峰命名法
+* 构建一个组件类使用React.createClass()
+* 包含一个必须得方法render,它就可以给我们返回一个或一组能够渲染的DOM结构
+* */
+
+//创建一个组件
+//    var HelloMessage = React.createClass({
+//        render:function () {
+//            return <h1>hello Message!</h1>
+//        }
+//    })
+
+//    在react里如果输出多个同级标签,一定要加上一个父级
+//    var HelloMessage = React.createClass({
+//        render:function () {
+//            return (
+//                    <div>
+//                         <h1>hello Message!</h1>
+//                         <a href="#">百度</a>
+//                    </div>
+//            )
+//        }
+//    })
+//
+//
+//    ReactDOM.render(
+//            <HelloMessage></HelloMessage>,
+//            document.getElementById('container')
+//    )
+
+
+//     复合组件:多个组件相互组合
+//    var WebName = React.createClass({
+//        render:function () {
+//            return (
+//                    <h1>蓝鸥科技</h1>
+//            )
+//     zh   }
+//    })
+//
+//    var WebLink = React.createClass({
+//        render:function () {
+//            return (
+//                    <a href="http://www.lanou3g.com">蓝鸥科技</a>
+//            )
+//        }
+//    })
+//    var WebShow = React.createClass({
+//        render:function () {
+//            return (
+//                    <div>
+//                    <WebName></WebName>
+//                        <WebLink></WebLink>
+//                    </div>
+//            )
+//        }
+//    })
+//    ReactDOM.render(
+//        <WebShow></WebShow>,
+//            document.getElementById("container")
+//    )
+
+    /*react的css样式分为三类
+    * 内联样式
+    * 对象样式
+    * 选择器样式(类名的添加需要用className)
+    * */
+
+    var styles = {
+        color:"blue",
+        backgroundColor:"yellow"
+    }
+    var StyleTest = React.createClass({
+        render:function () {
+            return (
+                    <div style={{backgroundColor:"red",borderWidth:"1px",borderColor:"green",borderStyle:"solid"}}>
+                        <h1 style={styles}>我是标题</h1>
+                        <p className="act">我是段落</p>
+                    </div>
+            )
+        }
+    })
+
+    ReactDOM.render(
+            <StyleTest></StyleTest>,
+            document.getElementById("container")
+    )
+</script>
+</html>
