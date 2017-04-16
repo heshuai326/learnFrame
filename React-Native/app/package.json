@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "mockjs": "^1.0.1-beta3",
+    "query-string": "^4.3.2",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.43.3",
+    "react-native-button": "^1.8.2",
+    "react-native-sk-countdown": "^1.0.1",
+    "react-native-vector-icons": "^4.0.1",
+    "react-native-video": "^1.0.0"
+  }
+}
