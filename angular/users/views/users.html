@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="public/bootstrap.min.css">-->
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="container">
+    <div class="page-header">
+        <h1>Users</h1>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <th>编辑</th>
+        <th>姓</th>
+        <th>名</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td><button class="btn btn-default" ng-click="edit($index)"><span class="glyphicon glyphicon-pencil"></span>编辑</button></td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td><button class="btn btn-danger" ng-click="delete($index)"><span class="glyphicon glyphicon-remove"></span>删除</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <button class="btn btn-lg btn-success" ng-click ="create()">
+        <span class="glyphicon glyphicon-user"></span>
+        创建新用户
+    </button>
+    <hr/>
+    <h2 ng-show="createBol">创建新用户</h2>
+    <h2 ng-hide="createBol">编辑用户</h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="" class="col-xs-1 control-label">姓</label>
+            <div class="col-xs-11">
+                <input type="text" class="form-control" ng-model="firstName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-xs-1 control-label" >名</label>
+            <div class="col-xs-11">
+                <input type="text" class="form-control" ng-model="lastName">
+            </div>
+        </div>
+        <div class="form-group" ng-show="createBol">
+            <label for="" class="col-xs-1 control-label" >密码</label>
+            <div class="col-xs-11">
+                <input type="password" class="form-control" ng-model="pass">
+            </div>
+        </div>
+        <div class="form-group" ng-show="createBol">
+            <label for="" class="col-sm-1 control-label">重复密码</label>
+            <div class="col-xs-11">
+                <input type="password" class="form-control" ng-model="resetPass">
+            </div>
+        </div>
+        <hr/>
+        <button class="btn btn-success" ng-click="save()" ng-disabled="isDisabled()">
+            <span class="glyphicon glyphicon-save"></span>
+            保存
+        </button>
+    </form>
+</div>
+
+</body>
+<script src="./angular.min.js"></script>
+<script>
+var app = angular.module("myApp",[]);
+    app.controller("myCtrl",function ($scope,$http) {
+        $scope.users = [];
+        $http.get('/users').then(function (res) {
+            result = res.data;
+            for(item in result){
+                $scope.users.push(result[item])
+            }
+        }).then(function (err) {
+            if (err) throw  err;
+        })
+
+        $scope.createBol = true;
+//        保存当前下标
+        var thisIndex = 0;
+        var thisUser = "";
+        $scope.edit = function (index) {
+            thisIndex = index;
+            thisUser = $scope.users[index];
+            $scope.createBol = false;
+            $scope.firstName = $scope.users[index].firstName;
+            $scope.lastName = $scope.users[index].lastName;
+
+        }
+        $scope.save = function () {
+//            判断当前状态(编辑,添加)
+            if($scope.createBol){
+//                创建状态
+                $scope.users.push({
+                    firstName:$scope.firstName,
+                    lastName:$scope.lastName
+                })
+                $http({
+                    method:'put',
+                    url:'/users/save',
+                    data:{
+                        firstName:$scope.firstName,
+                        lastName:$scope.lastName,
+                        pass:$scope.pass,
+                        index:$scope.users.length-1
+                    }
+                }).then(function (res) {
+                    console.log(res.data);
+                }).then(function (err) {
+                    if(err) throw  err;
+                })
+            }else {
+//                编辑状态
+                $scope.users[thisIndex].firstName = $scope.firstName;
+                $scope.users[thisIndex].lastName = $scope.lastName;
+                $http({
+                    method:'patch',
+                    url:'/users/edit',
+                    data:{
+                      user:thisUser
+                    }
+                }).then(function (res) {
+                    console.log(res.data);
+                }).then(function (err) {
+                    if(err) throw  err;
+                })
+            }
+        }
+        $scope.create = function () {
+            $scope.createBol = true;
+            $scope.firstName = "";
+            $scope.lastName = "";
+            $scope.pass = "";
+            $scope.resetPass = "";
+        }
+        $scope.isDisabled = function () {
+//            判断保存按钮的禁用状态
+            var first = $scope.firstName;
+            var last = $scope.lastName;
+            var pass = $scope.pass;
+            var resetPass = $scope.resetPass;
+            if($scope.createBol){
+//                创建
+//                可以点击,都不为空,密码相等
+                if(first&&last&&pass&&resetPass&&pass==resetPass){
+                    return false;
+                }else {
+                    return true;
+                }
+                return !(first&&last&&pass&&resetPass&&pass==resetPass);
+
+            }else {
+//                编辑
+                if((first!=thisUser.firstName&&first||last!=thisUser.lastName&&last)){
+                    return false;
+                }else {
+                    return true;
+                }
+            }
+        }
+        console.log($scope.users);
+//        删除用户
+        $scope.delete = function (index) {
+           thisUser = $scope.users[index];
+           indexUser = $scope.users[index].index;
+           console.log(indexUser);
+            $scope.users.splice(index,1);
+            $http({
+                method:'post',
+                url:'/users/edit',
+                data:{
+                    indexUser:indexUser
+                }
+            }).then(function (res) {
+                console.log(res.data);
+            }).then(function (err) {
+                if(err) throw  err;
+            })
+
+        }
+    })
+
+</script>
+</html>
