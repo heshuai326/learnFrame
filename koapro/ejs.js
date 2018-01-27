@@ -33,8 +33,8 @@ router.get('/users',async(ctx,next)=>{
 
 app.use(router.routes());
 
-// app.listen(3000,function(){
-//     console.log('server is running 3000!')
-// })
+app.listen(3000,function(){
+    console.log('server is running 3000!')
+})
 
 module.exports = app;

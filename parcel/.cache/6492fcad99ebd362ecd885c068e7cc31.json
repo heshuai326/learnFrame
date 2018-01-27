@@ -1,0 +1,1 @@
+{"dependencies":[{"name":"./styles.scss","loc":{"line":1,"column":7}}],"generated":{"js":"\"use strict\";\n\nrequire(\"./styles.scss\");\n\ndocument.write('parcel says hello!');"},"hash":"5051f9ec6139cbfa2e68a60ae1b410d5"}
