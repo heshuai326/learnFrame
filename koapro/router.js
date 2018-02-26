@@ -1,22 +1,34 @@
-const Koa = require('koa');
+const Koa = require('Koa');
+const path = require('path');
 const app = new Koa();
+const router = require('koa-router')();
+const render = require('koa-ejs');
 
-const router =  require('koa-router')(); //引入路由模块，注意这是一个函数的调用
+render(app,{
+    	root: path.join(__dirname, 'views'),
+        layout: 'layouts',
+    	viewExt: 'html',
+   	    cache: false,
+    	debug: true
+	});
+
+
+app.use(async(ctx,next)=>{
+    console.log(`${ctx.request.url}`);
+    await next();
+})
 
 router.get('/',async(ctx,next)=>{
-    ctx.response.type ='text/html';
-    ctx.response.body = '<h1>koa 这是首页</h1>';
+    console.log('------请求处理-------')
+    await ctx.render('index');
 })
 
 router.get('/users',async(ctx,next)=>{
-    console.log(ctx.params);
-    ctx.response.type = 'text/html';
-    ctx.response.body = '<h1>koa 这是用户页面</h1>'
+    await ctx.render('users');
 })
 
+app.use(router.routes());//路由中间件
 
-app.use(router.routes());//使用路由中间件
-
-app.listen(3000,function(){
-    console.log('server is running 3000!')
-})
+app.listen(3000, function() {
+    console.log('App listening on port 3000!');
+});
