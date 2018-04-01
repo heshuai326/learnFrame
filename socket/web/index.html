@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+</head>
+<body>
+   <div id="app">
+        <h1>沟通你我</h1>
+        <h3>我是客户端</h3>
+        <input v-model="message" type="text">
+        <button @click="send">发送</button>
+        <p v-for="msg in messages">{{msg}}</p>
+   </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="./bundle.js"></script>
+</html>

@@ -10,3 +10,8 @@
 
 //使用按时关键字将输入的变量重命名
 import { lastName as surname}  from './export'
+
+// default的时候不需要写{}
+import fn from './export'
+
+import * as obj  from './export'

@@ -13,6 +13,6 @@ export function multiply(x, y) {
 }
 
 // 为了给用户方便，为模块指定默认输出
-export default function() {
+export default function fn() {
 
 }
