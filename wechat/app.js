@@ -1,31 +1,31 @@
 'use strict'
 
 // 引入一些第三方包
-var Koa = require('koa');
-var path = require('path');
-var weichat = require('./wei/g');
-var util = require('./libs/util')
-var wechat_file = XPathEvaluator.join(__dirname,'./config/wechat.txt')
-
+const Koa = require('koa')
+const path = require('path')
+const wechat = require('./wechat/g')
+const util = require('./libs/util')
+const wechat_file = path.join(__dirname, './config/wechat.txt')
 
 // 配置信息
 var config  = {
     wechat : {
         appID:'wx1ba6b62b78195300',
-        appsecret:'f21154e19d411e436200445e4da7e5bc',
+        appSecret:'f21154e19d411e436200445e4da7e5bc',
         token:'heshuai',
-        getAccessToken:function(){
+        getAccessToken: function(){
             return util.readFileAsync(wechat_file)
         },
-        saveAccessToken:function(data){
-            data = JSON.stringify(data);
-            return util.writeFileAsyn(wechat_file)
+        saveAccessToken: function(data) {
+           data = JSON.stringify(data)
+            return util.writeFileAsync(wechat_file, data)
         }
     }
 }
-var app = new Koa();
 
-app.use(weichat(config.weichat));
+var app = new Koa()
 
-app.listen(80)
-console.log("listening 800");
+app.use(wechat(config.wechat))
+app.listen(80,function(){
+    console.log("listening server 80")
+})

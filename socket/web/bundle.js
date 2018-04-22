@@ -6192,7 +6192,7 @@ var _socket2 = _interopRequireDefault(_socket);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var socket = (0, _socket2.default)('ws://localhost:3000');
+var socket = (0, _socket2.default)('ws://localhost:4000');
 
 var app = new Vue({
     el: '#app',

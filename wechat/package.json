@@ -8,8 +8,13 @@
   },
   "author": "heshuai",
   "license": "ISC",
-  "devDependencies": {
-    "koa": "^1.2.5",
-    "sha1": "^1.1.1"
+  "devDependencies": {},
+  "dependencies": {
+    "content-type": "^1.0.4",
+    "koa": "^2.5.0",
+    "raw-body": "^2.3.2",
+    "sha1": "^1.1.1",
+    "superagent": "^3.8.2",
+    "xml2js": "^0.4.19"
   }
 }
