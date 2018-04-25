@@ -23,7 +23,7 @@ module.exports = function(opts){
 
         if (ctx.request.method==='GET') {
             if (sha===signature) {
-                ctx.response.body = echostr+''
+                ctx.response.body = echostr
             } else {
                 ctx.response.body = 'wrong'
             }
@@ -39,8 +39,22 @@ module.exports = function(opts){
                 buf += chunk
             })
             ctx.req.on('end',async () => {
-                let  result = await util.xmlToJson(buf)
-                console.log(result)
+                let  content = await util.xmlToJson(buf)
+                let message = util.formatMessage(content.xml)
+
+                // if(message.msgType === 'event'){
+                    // if(message.Event==='subscribe'){
+                        let now = new Date().getTime()
+
+                        ctx.response.status = 200
+                        ctx.response.type = 'application/xml'
+                        let body = 
+                        `<xml><ToUserName>< ![CDATA[${message.FromUserName}] ]></ToUserName><FromUserName>< ![CDATA[${message.ToUserName}] ]></FromUserName><CreateTime>${now}</CreateTime> <MsgType>< ![CDATA[text] ]></MsgType> <Content>< ![CDATA[你好,欢迎关注 ]></Content> </xml>`                      
+                        ctx.response.body = body                        
+                        console.log(ctx.response)                        
+                        return                     
+                    // }
+                // }
             })
         }
 
