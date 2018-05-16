@@ -50,7 +50,7 @@ module.exports = function(opts){
                         ctx.response.type = 'application/xml'
                         let body = 
                         `<xml><ToUserName>< ![CDATA[${message.FromUserName}] ]></ToUserName><FromUserName>< ![CDATA[${message.ToUserName}] ]></FromUserName><CreateTime>${now}</CreateTime> <MsgType>< ![CDATA[text] ]></MsgType> <Content>< ![CDATA[你好,欢迎关注 ]></Content> </xml>`                      
-                        ctx.response.body = body                        
+                        ctx.body = body                        
                         console.log(ctx.response)                        
                         return                     
                     // }
