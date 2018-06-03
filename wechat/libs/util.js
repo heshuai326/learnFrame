@@ -24,6 +24,7 @@ exports.xmlToJson = (str) => {
             }
         })
     })
+    
 }
 
 exports.jsonToXml = (obj) => {
