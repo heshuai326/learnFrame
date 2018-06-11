@@ -11,9 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
-  socket.on('sendMsg', (data) => {   
-    io.emit('receiveMsg', {msg:`服务端收到你的消息:${data.msg}`});  
-})
+  setInterval(function(){
+    io.emit('ticker',  JSON.stringify({"id":"5b1a2d32c73a516bced4c0c6","exchange":"Bittrex","currencyPair":"BTC/USDT","open":7638.81000000,"close":7638.81000000,"lowest":7638.81000000,"highest":7638.81000000,"timestamp":1528442162541,"intervalDate":1528442100000}));      
+  }, 1000)
 });
 
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>service-work</title>
+</head>
+<body>
+    
+</body>
+<script>
+    if(navigator.serviceWorker != null) {
+        // console.log(navigator.serviceWorker)
+        navigator.serviceWorker.register('service-work.js')
+        .then(function(registerration){
+            // console.log(registerration)
+            console.log('Registered events at scope:', registerration.scope)
+            if(registerration.pushManager) {
+                registerration.pushManager.getSubscription().then(subscription => {
+                    console.log(subscription)
+                    // 如果用户没有订阅
+                    if(!subscription) {
+                        subscribeUser(registerration)
+                    } else{
+                        console.log('你没有订阅的通知')
+                    }
+                })
+            }else {
+                console.log('不支持pushManager')
+            }
+        }).catch(function(err){
+            console.log('发生了错误', err)
+        })
+    } else {
+        console.log('不支持sw')
+    }
+
+function subscribeUser(swRegistration) {
+    const applicationServicePublicKey = ''
+    const applicationServerKey = urlB64ToUint8Array(applicationServicePublicKey)
+    swRegistration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: applicationServerKey
+    })
+    // 用户同意
+    .then(function(subscription){
+        console.log('用户订阅了:', JSON.stringify(subscription))
+    }).catch(function(err){
+        console.log('用户订阅失败', err)
+    })
+}
+</script>
+<!-- <script src="./service-work.js"></script> -->
+</html>
