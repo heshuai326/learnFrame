@@ -1,0 +1,6 @@
+# import Post from "./generated/prisma.graphql"
+
+type Query {
+  posts(id: String): [Post!]!
+  user(id: ID!): User
+}

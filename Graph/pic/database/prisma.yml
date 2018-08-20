@@ -1,0 +1,14 @@
+# Prisma API 的入口文件
+endpoint: http://localhost:4466/pic/pic
+
+# 包含一些数据模型
+datamodel: datamodel.graphql
+
+# 可以导入一些初始化的数据
+# seed: 
+  # import: seed.graphql
+
+# 当骨架改变的时候服务会自动更新
+hooks:
+  post-deploy:
+  - graphql get-schema --project prisma

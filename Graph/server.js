@@ -5,7 +5,7 @@ var { buildSchema } = require('graphql');
 var schema = buildSchema(`
   type Query {
     quoteOfTheDay: String,
-    random: Float,!,
+    random: Float!,
     rollThreeDice: [Int],
     rollDice(numDice: Int!, numSides: Int): [Int],
   }
