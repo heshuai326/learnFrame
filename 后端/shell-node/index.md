@@ -72,7 +72,7 @@ npm link
 ```
 #### 编写服务部分
 解析markdown文件成html渲染页面
-```
+```javascript
 const express = require('express')
 const serveStatic = require('serve-static')
 const path =  require('path')
