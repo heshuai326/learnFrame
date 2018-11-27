@@ -17,8 +17,9 @@ const env = process.env.NODE_ENV === 'testing'
 
 const webackConfig = merge(baseWebpackConfig, {
     module: {
+        // 调用util.styleLoaders的方法
         rules: utils.styleLoaders({
-            sourceMap: config.build.productionSourceMap,
+            sourceMap: config.build.productionSourceMap, // 开启调试的模式 默认为true
             extract: true,
             usePostCSS: true
         })
@@ -35,14 +36,15 @@ const webackConfig = merge(baseWebpackConfig, {
         }),
         new UglifyJsPlugin({
             uglifyOptions: {
-                compress: {
-                    warnings: false
+                compress: { // 压缩
+                    warnings: false // 警告： true保留 false不保留
                 }
             },
             sourceMap: config.build.productionSourceMap,
             parallel: true
         }),
         new ExtractTextPlugin({
+            // 抽取文本 比如打包之后的index页面有style插入，就是这个插件抽取出来的，减少请求
             filename: utils.assetPath('css/[name].[contenthash].css'),
             allChunks: true
         }),
@@ -51,25 +53,25 @@ const webackConfig = merge(baseWebpackConfig, {
                 ? { safe: true, map: { inline: false } }
                 : { safe: true }
         }),
-        new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({// 优化css的插件
             filename: process.env.NODE_ENV === 'testing'
                 ? 'index.html'
                 : config.build.index,
             template: 'index.html',
             inject: true,
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
+            minify: { // 压缩
+                removeComments: true, // 删除注释
+                collapseWhitespace: true, // 删除空格
+                removeAttributeQuotes: true // 删除属性的引号
             },
-            chunksSortMode: 'dependency'
+            chunksSortMode: 'dependency' // 模块排序，按照我们需要的顺序排序
         }),
 
         new webpack.HashedModuleIdsPlugin(),
         // scope 
         new webpack.optimize.ModuleConcatenationPlugin(),
         // 分割 vendor js 到其他文件
-        new webpack.optimize.CommonsChunkPlugin({
+        new webpack.optimize.CommonsChunkPlugin({ // 抽取公共的模块
             name: 'vendor',
             minChunks (module) {
                 // 打包到所有引入的依赖
@@ -95,7 +97,7 @@ const webackConfig = merge(baseWebpackConfig, {
         }),
 
         // 拷贝静态文件
-        new CopyWebpackPlugin([
+        new CopyWebpackPlugin([ // 复制，比如打包完之后需要把打包的文件都复制到dist里面
             {
                 from: path.resolve(__dirname, '../static'),
                 to: config.build.assetsSubDirectory,

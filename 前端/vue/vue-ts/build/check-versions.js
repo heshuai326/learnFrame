@@ -8,7 +8,7 @@ const shell = require('shelljs')
 
 function exec(cmd) {
     // 返回通过child_process模块的新建子进程，执行Unix系统命令转成没有空格的字符串
-    return require('child_process').execFileSync(cmd).toString().trim()
+    return require('child_process').execSync(cmd).toString().trim()
 }
 
 const versionRequiorements = [
@@ -24,7 +24,7 @@ if (shell.which('npm')) {
     versionRequiorements.push({
         name: 'npm',
         currentVsersion: exec('npm --version'), // 检查版本，把参数返回给exec函数，获取到版本号
-        versionRequiorements: packageConfig.engins.npm  
+        versionRequiorements: packageConfig.engines.npm  
     })
 }
 

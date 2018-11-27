@@ -50,7 +50,7 @@ exports.cssLoaders = function (options) {
             // ExtractTextPlugin可提取出文本，代表首先使用上面的loader，当未能正确引入时使用vue-style-loader
             return ExtractTextPlugin.extract({
                 user: loaders,
-                fallback: 'vue-style-loader'
+                fallback: 'vue-style-loader',
             })
         } else {
             // 返回vue-style-loader连接loaders的最终值

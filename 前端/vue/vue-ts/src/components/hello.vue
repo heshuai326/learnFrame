@@ -11,8 +11,22 @@ import Component from 'vue-class-component'
 
 console.log()
 
-@Component({})
+@Component({
+    name:'hello',
+    
+})
 export default class Hello extends Vue{
+    public isActive: boolean = false
+
+    
+    mounted() {
+        console.log(111122222)
+    }
+
+    created() {
+        console.log(1111111)
+    }
+
 
 }
 </script>
