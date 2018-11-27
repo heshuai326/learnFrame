@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:4.0.0
+    command: --bind_ip_all
+    restart: always
+    ports:
+    - "27017:27017"
+    volumes:
+    - "mongo:/var/mongo"
+  redis:
+    image: redis:4.0.8
+    restart: always
+    ports:
+    - "6379:6379"
+    volumes:
+    - "redis:/var/redis"
+volumes:
+  mongo:
+  redis:
