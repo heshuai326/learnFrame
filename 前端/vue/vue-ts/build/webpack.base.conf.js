@@ -30,6 +30,8 @@ module.exports = {
             // 创建路径的别名
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
+            "api": resolve('src/app/base/api'),
+            "module": resolve('src/module')
         }
     },
     module: {

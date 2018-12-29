@@ -9,8 +9,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-console.log()
-
 @Component({
     name:'hello',
     

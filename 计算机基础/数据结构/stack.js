@@ -5,11 +5,11 @@
  */
 
  function Stack() {
-    const item = []
+    const items = []
 
     // 入栈
     this.push = function(element) {
-        item.push(element)
+        items.push(element)
     }
 
     // 出栈
@@ -19,10 +19,23 @@
 
     // 栈顶的一个元素
     this.peek = function() {
-        return item[item.length-1]
+        return items[items.length-1]
     }
 
     this.isEmpty = function() {
-        return item.length === 0
+        return items.length === 0
+    }
+
+
+    this.size = function() {
+        return items.length
+    }
+
+    this.clear = function() {
+        items= []
+    }
+
+    this.print = function() {
+        console.log(items.toString())
     }
   }
