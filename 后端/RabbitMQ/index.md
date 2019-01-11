@@ -15,7 +15,8 @@
 8. 缓冲
 9. 理解数据流
 10. 异步通信
-
+#### RAbbitMQ
+RabbitMQ是流行的开源消息队列系统，是AMQP（高级消息队列）的标准实现，用erlang语言开发。RabbitMQ由良好的性能和时效性，同时还有非常好的支持集群和负载部署，非常适合在较大规模的分布式系统种使用。
 #### docker 启动服务
 
       docker run -d --name rabbit -p 5672:5672 rabbitmq
