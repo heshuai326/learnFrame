@@ -11,13 +11,44 @@
  */
 // console.error(process.cwd(), __dirname)
 
-const exec = require('child_process').exec
-exec('ls -al', function(err, stdout, stderr){
-    console.log(stdout)
-    console.log(stderr)
-})
 
-exec('ls process.js', function(err, stdout, stderr){
-    console.log(stdout)
-    console.log(stderr)
-})
+/**
+ * child_process(子进程)
+ * spawn: 用于异步的衍生子进程，且不会阻塞时间循环
+ * exec: 衍生一个shell并在shell上运行命令
+ * fork: 衍生一个新的node进程，并通过IPC通讯通道来调用指定得模块，该通道允许父进程与子进程之间相互发送信息
+ */
+
+const util = require('util');
+// const{ spawn, exec }= require('child_process');
+
+
+// exec
+// exec('ls -al', function(err, stdout, stderr){
+//     console.log(`exec数据${stdout}`);
+//     console.log(stderr)
+// })
+
+// exec('cat process.js', function(err, stdout, stderr){
+//     console.log(stdout)
+//     console.log(stderr)
+// })
+
+
+// spawn
+// const  ls = spawn('ls')
+// ls.stdout.on('data', (data) => {
+//     console.log(`spawn数据${data}`)
+// })
+
+
+// promisify: 可以将一般回调转换为promise
+
+const exec = util.promisify(require('child_process').exec);
+
+async function run() {
+    const { stdout, stderr } = await exec('node --version');
+    console.log('stdout', stdout);
+}
+
+run()
