@@ -9,7 +9,7 @@
  * 4.删除环境变量 unset NODE_ENV
  * 5.显示所有的环境变量 env
  */
-// console.error(process.cwd(), __dirname)
+console.error(process.cwd(), __dirname)
 
 
 /**
@@ -19,7 +19,7 @@
  * fork: 衍生一个新的node进程，并通过IPC通讯通道来调用指定得模块，该通道允许父进程与子进程之间相互发送信息
  */
 
-const util = require('util');
+// const util = require('util');
 // const{ spawn, exec }= require('child_process');
 
 
@@ -44,11 +44,11 @@ const util = require('util');
 
 // promisify: 可以将一般回调转换为promise
 
-const exec = util.promisify(require('child_process').exec);
+// const exec = util.promisify(require('child_process').exec);
 
-async function run() {
-    const { stdout, stderr } = await exec('node --version');
-    console.log('stdout', stdout);
-}
+// async function run() {
+//     const { stdout, stderr } = await exec('node --version');
+//     console.log('stdout', stdout);
+// }
 
-run()
+// run()
