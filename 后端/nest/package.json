@@ -28,7 +28,7 @@
     "class-transformer": "^0.1.9",
     "class-validator": "^0.9.1",
     "config": "^2.0.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mongoose": "^5.2.15",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.2",
